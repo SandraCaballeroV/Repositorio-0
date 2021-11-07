@@ -1,7 +1,6 @@
 import { ObjectId } from 'mongodb';
 import { getDB } from '../../db/db';
 
-
 const queryAllVehicles = async (callback) => {
   const baseDeDatos = getDB();
   await baseDeDatos.collection('vehiculo').find({}).limit(50).toArray(callback);
