@@ -40,3 +40,4 @@ rutasVenta.route('/ventas/:id').delete((req, res) => {
 });
 
 export default rutasVenta;
+

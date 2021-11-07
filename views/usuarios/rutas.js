@@ -8,7 +8,6 @@ import {
   consultarOCrearUsuario,
 } from '../../controllers/usuarios/controller.js';
 
-
 const rutasUsuario = Express.Router();
 
 const genercCallback = (res) => (err, result) => {

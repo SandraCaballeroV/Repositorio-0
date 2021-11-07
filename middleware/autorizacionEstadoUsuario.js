@@ -1,5 +1,5 @@
 import { ObjectId } from 'mongodb';
-import { getDB } from '../db/db';
+import { getDB } from '../db/db.js';
 import jwt_decode from 'jwt-decode';
 
 const autorizacionEstadoUsuario = async (req, res, next) => {
@@ -23,6 +23,8 @@ const autorizacionEstadoUsuario = async (req, res, next) => {
         // paso 5: si el usuario está pendiente o habilitado, ejecutar next()
         next();
       }
+    } else {
+      next();
     }
   });
 };
