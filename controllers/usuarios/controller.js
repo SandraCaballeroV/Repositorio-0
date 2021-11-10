@@ -1,18 +1,15 @@
 import { ObjectId } from 'mongodb';
 import { getDB } from '../../db/db.js';
 import jwt_decode from 'jwt-decode';
-
 const queryAllUsers = async (callback) => {
   const baseDeDatos = getDB();
   console.log('query');
   await baseDeDatos.collection('usuario').find({}).limit(50).toArray(callback);
 };
-
 const crearUsuario = async (datosUsuario, callback) => {
   const baseDeDatos = getDB();
   await baseDeDatos.collection('usuario').insertOne(datosUsuario, callback);
 };
-
 const consultarUsuario = async (id, callback) => {
   const baseDeDatos = getDB();
   await baseDeDatos.collection('usuario').findOne({ _id: new ObjectId(id) }, callback);
@@ -24,7 +21,6 @@ const consultarOCrearUsuario = async (req, callback) => {
   const token = req.headers.authorization.split('Bearer ')[1];
   const user = jwt_decode(token)['http://localhost/userData'];
   console.log(user);
-
   // 6.2. con el correo del usuario o con el id de auth0, verificar si el usuario ya esta en la bd o no
   const baseDeDatos = getDB();
   await baseDeDatos.collection('usuario').findOne({ email: user.email }, async (err, response) => {
@@ -42,7 +38,6 @@ const consultarOCrearUsuario = async (req, callback) => {
     }
   });
 };
-
 const editarUsuario = async (id, edicion, callback) => {
   const filtroUsuario = { _id: new ObjectId(id) };
   const operacion = {
@@ -53,13 +48,11 @@ const editarUsuario = async (id, edicion, callback) => {
     .collection('usuario')
     .findOneAndUpdate(filtroUsuario, operacion, { upsert: true, returnOriginal: true }, callback);
 };
-
 const eliminarUsuario = async (id, callback) => {
   const filtroUsuario = { _id: new ObjectId(id) };
   const baseDeDatos = getDB();
   await baseDeDatos.collection('usuario').deleteOne(filtroUsuario, callback);
 };
-
 export {
   queryAllUsers,
   crearUsuario,
