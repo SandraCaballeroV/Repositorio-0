@@ -26,10 +26,10 @@ const consultarOCrearUsuario = async (req, callback) => {
   await baseDeDatos.collection('usuario').findOne({ email: user.email }, async (err, response) => {
     console.log('response consulta bd', response);
     if (response) {
-      // 7.1. si el usuario ya esta en la BD, devuelve la info del usuario
+      
       callback(err, response);
     } else {
-      // 7.2. si el usuario no esta en la bd, lo crea y devuelve la info
+      
       user.auth0ID = user._id;
       delete user._id;
       user.rol = 'sin rol';
