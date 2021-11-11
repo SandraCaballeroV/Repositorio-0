@@ -51,6 +51,7 @@ const eliminarUsuario = async (id, callback) => {
   const baseDeDatos = getDB();
   await baseDeDatos.collection('usuario').deleteOne(filtroUsuario, callback);
 };
+
 export {
   queryAllUsers,
   crearUsuario,
